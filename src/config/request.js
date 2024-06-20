@@ -39,7 +39,7 @@ http.interceptors.response.use(
   function (response) {
     // 对响应数据做点什么
     // dataAxios 是 axios 返回数据中的 data
-    const dataAxios = response.data;
+    const dataAxios = response.data;Z
     const { code, message } = dataAxios;
     switch (code + "") {
       case "100":

@@ -1,16 +1,19 @@
 <script setup>
 import { defineComponent } from "vue";
 
-import ProgressLine from "./components/progress-line";
-import Information from "./components/information";
-import AudioControls from "./components/audio-controls";
-
+//import ProgressLine from "./components/progress-line";
+//import Information from "./components/information";
+//import AudioControls from "./components/audio-controls";
+/*
 defineComponent({
   name: "MusicControls",
 });
+*/
+
 </script>
 
 <template>
+  <!--
   <div class="music-controls">
     <div class="main">
       <div class="music-header">
@@ -21,12 +24,12 @@ defineComponent({
           <Information />
         </div>
         <div class="music-body__right">
-          <!-- 控制音乐 -->
           <AudioControls />
         </div>
       </div>
     </div>
   </div>
+  -->
 </template>
 
 <style lang="scss" scoped>

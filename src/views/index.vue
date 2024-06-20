@@ -6,7 +6,6 @@ import { useRouter } from "vue-router";
 import First from "@/components/WelcomeComps/first";
 import Second from "@/components/WelcomeComps/second";
 import TypeWriter from "@/components/TypeWriter/type-writer";
-import { getSentence, getKey } from "@/api/home";
 
 const menuList = [
   {
@@ -14,15 +13,15 @@ const menuList = [
     path: "/home",
   },
   {
-    label: "相册",
-    path: "/photoAlbum",
+    label: "键值",
+    path: "/kv",
   },
   {
-    label: "说说",
+    label: "发现",
     path: "/talk",
   },
   {
-    label: "留言",
+    label: "文档",
     path: "/message/list",
   },
   {
@@ -30,10 +29,10 @@ const menuList = [
     path: "/link/list",
   },
   {
-    label: "切换",
+    label: "更多",
   },
 ];
-const saying = ref([]);
+const saying = ref(["欢迎来到 kumo search, 让我们一起创造更多的可能性吧", "编程是一种艺术, 代码是一种诗歌"]);
 const router = useRouter();
 const componentId = shallowRef(null);
 
@@ -52,32 +51,11 @@ const goMenu = (val) => {
   }
 };
 
-const getAppKey = async () => {
-  let appRes = await getKey();
-  try {
-    if (appRes.code == 0) {
-      let res = await getSentence(appRes.data.cola_key);
-      if (res.code == 0) {
-        saying.value = [res.data.note];
-      }
-    }
-  } catch (err) {
-    console.error(err);
-  } finally {
-    if (!saying.value.length) {
-      saying.value = ["这次我不想逃，喝掉失忆毒药", "斯人若彩虹，遇上方知有"];
-    }
-  }
-};
-
-onMounted(() => {
-  getAppKey();
-});
 </script>
 
 <template>
   <div class="welcome-box">
-    <div class="font">M's Blog</div>
+    <div class="font">KUMO SEARCH</div>
     <TypeWriter class="type-writer" :typeList="saying"></TypeWriter>
     <ul class="home-tab">
       <li v-for="item in menuList" :key="item.path" @click="goMenu(item.path)">
