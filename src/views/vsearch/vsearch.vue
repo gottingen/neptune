@@ -10,5 +10,5 @@ const loading = ref(true);
 
 <template>
   <PageHeader :loading="loading" />
-  这是里程碑页面
+  这是向量搜索页面
 </template>

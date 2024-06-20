@@ -25,6 +25,7 @@
 <script>
 
 import querystring from "querystring";
+import { httpPing } from "@/api/ping";
 
 export default {
   data () {
@@ -34,6 +35,7 @@ export default {
       server: 'localhost:8018',
       code: 0,
       msg: '',
+      pingd: "链接成功"
     }
   },
   methods: {
@@ -44,6 +46,18 @@ export default {
             this.msg = response.data.message;
             this.get_value = response.data.value;
           })
+    },
+    ping_server: function() {
+      try {
+        let res = httpPing(this.server);
+        if (res === true) {
+          this.pingd = "链接成功"
+        } else {
+          this.pingd = "链接失败"
+        }
+      } catch (e) {
+        this.pingd = "链接失败"
+      }
     }
   }
 }

@@ -18,15 +18,15 @@ const menuList = [
   },
   {
     label: "发现",
-    path: "/talk",
+    path: "/sirius",
   },
   {
-    label: "文档",
-    path: "/message/list",
+    label: "V搜索",
+    path: "/vsearch",
   },
   {
-    label: "友链",
-    path: "/link/list",
+    label: "资源",
+    path: "/resource",
   },
   {
     label: "更多",

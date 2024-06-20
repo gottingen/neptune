@@ -113,26 +113,10 @@ onMounted(() => {
           <el-menu-item index="/home"><i class="iconfont icon-home"></i> 主页</el-menu-item>
           <el-menu-item index="/archives"><i class="iconfont icon-icon"></i> 里程碑</el-menu-item>
           <el-menu-item index="/kv"><i class="iconfont icon-icon"></i> 键值</el-menu-item>
-          <el-sub-menu index="/resources">
-            <template #title><i class="iconfont icon-menu"></i> 资源导航</template>
-            <el-menu-item index="/resources/front"
-              ><i class="iconfont icon-folder"></i> 前端</el-menu-item
-            >
-            <el-menu-item index="/resources/back"
-              ><i class="iconfont icon-houduankaifa"></i> 后端</el-menu-item
-            >
-            <!-- <el-menu-item index="/music"><i class="iconfont icon-bofangduilie"></i> 音乐</el-menu-item> -->
-          </el-sub-menu>
-          <el-menu-item index="/category"><i class="iconfont icon-sort"></i> 分类</el-menu-item>
-          <!-- <el-menu-item index="/tag"><i class="iconfont icon-label_fill"></i> 标签</el-menu-item> -->
-          <el-menu-item index="/photoAlbum"><i class="iconfont icon-paper"></i> 相册</el-menu-item>
-          <el-menu-item index="/talk"><i class="iconfont icon-speechbubble"></i> 说说</el-menu-item>
-          <el-menu-item index="/link/list"
-            ><i class="iconfont icon-pengyouquan"></i> 友链</el-menu-item
-          >
-          <el-menu-item index="/message/list"
-            ><i class="iconfont icon-liuyan"></i> 留言</el-menu-item
-          >
+          <el-menu-item index="/vsearch"><i class="iconfont icon-sort"></i> V搜搜</el-menu-item>
+          <el-menu-item index="/conf"><i class="iconfont icon-paper"></i> 配置</el-menu-item>
+          <el-menu-item index="/sirius"><i class="iconfont icon-speechbubble"></i> 服务发现</el-menu-item>
+          <el-menu-item index="/resource"><i class="iconfont icon-pengyouquan"></i> 资源</el-menu-item>
           <el-menu-item index="/login" v-if="!getUserInfo.id"
             ><i class="iconfont icon-timerauto"></i> 登录</el-menu-item
           >
