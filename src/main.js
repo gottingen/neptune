@@ -15,7 +15,7 @@ import "virtual:svg-icons-register";
 // 指令
 import vCopy from "./directives/copy";
 import image from "./directives/imageLoading";
-import axios from "axios";
+import axios from "axios/dist/axios";
 
 const app = createApp(App);
 app.config.globalProperties.$axios = axios
