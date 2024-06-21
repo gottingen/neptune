@@ -2,7 +2,7 @@
   <!-- 最外层 div 是占位置的 -->
   <div class="footer_box flex flex-col items-center justify-center">
     <!-- eslint-disable-next-line -->
-    <div class="footer-color">&copy EA INS 2024</div>
+    <div class="footer-color">&copy Kumo Search 2024</div>
   </div>
 </template>
 

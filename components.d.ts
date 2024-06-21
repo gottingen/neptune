@@ -7,7 +7,6 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
-    ArticleSkeleton: typeof import('./src/components/HomeArticle/components/article-skeleton.vue')['default']
     AudioControls: typeof import('./src/components/Music/controls/components/audio-controls.vue')['default']
     BackTop: typeof import('./src/components/BackTop/index.vue')['default']
     BlogFooter: typeof import('./src/components/Layout/footer/blog-footer.vue')['default']
@@ -15,7 +14,6 @@ declare module '@vue/runtime-core' {
     BlogMain: typeof import('./src/components/Layout/main/blog-main.vue')['default']
     BlogSearch: typeof import('./src/components/Search/blog-search.vue')['default']
     ChildrenItem: typeof import('./src/components/Comment/item/ChildrenItem.vue')['default']
-    Comment: typeof import('./src/components/Comment/Comment.vue')['default']
     CommentInput: typeof import('./src/components/Comment/item/CommentInput.vue')['default']
     Controls: typeof import('./src/components/Music/controls/index.vue')['default']
     CustomMusicList: typeof import('./src/components/Music/list/components/custom-music-list.vue')['default']
@@ -64,7 +62,6 @@ declare module '@vue/runtime-core' {
     First: typeof import('./src/components/WelcomeComps/first.vue')['default']
     Get: typeof import('./src/components/kv/get.vue')['default']
     GsapCount: typeof import('./src/components/GsapCount/index.vue')['default']
-    HomeArticleList: typeof import('./src/components/HomeArticle/home-article-list.vue')['default']
     IconList: typeof import('./src/components/Comment/item/IconList.vue')['default']
     Information: typeof import('./src/components/Music/controls/components/information.vue')['default']
     Kv: typeof import('./src/components/kv/kv.vue')['default']
@@ -75,9 +72,7 @@ declare module '@vue/runtime-core' {
     LyricBoard: typeof import('./src/components/Music/list/components/lyric-board.vue')['default']
     MessageBox: typeof import('./src/components/MessageBox/message-box.vue')['default']
     MobileTopSkeleton: typeof import('./src/components/RightSide/components/skeleton/mobile-top-skeleton.vue')['default']
-    Music: typeof import('./src/components/Music/index.vue')['default']
     PageHeader: typeof import('./src/components/PageHeader/index.vue')['default']
-    Pagination: typeof import('./src/components/Pagination/pagination.vue')['default']
     ParentItem: typeof import('./src/components/Comment/item/ParentItem.vue')['default']
     ProgressLine: typeof import('./src/components/Music/controls/components/progress-line.vue')['default']
     RightSide: typeof import('./src/components/RightSide/right-side.vue')['default']
@@ -94,8 +89,6 @@ declare module '@vue/runtime-core' {
     SpecialTitle: typeof import('./src/components/Music/list/components/special-title.vue')['default']
     SvgIcon: typeof import('./src/components/SvgIcon/index.vue')['default']
     SwitchTheme: typeof import('./src/components/SwitchTheme/index.vue')['default']
-    TextOverflow: typeof import('./src/components/TextOverflow/index.vue')['default']
-    TimeLine: typeof import('./src/components/TimeLine/time-line.vue')['default']
     TimeVolume: typeof import('./src/components/Music/controls/components/time-volume.vue')['default']
     Tooltip: typeof import('./src/components/ToolTip/tooltip.vue')['default']
     TypeWriter: typeof import('./src/components/TypeWriter/type-writer.vue')['default']
