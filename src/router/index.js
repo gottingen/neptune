@@ -48,152 +48,36 @@ const routes = [
         component: () => import("@/views/kv/kv.vue"),
       },
       {
-        path: "/category",
-        name: "Category",
+        path: "/vsearch",
+        name: "Vsearch",
         meta: {
-          name: "分类",
+          name: "向量搜索",
         },
-        component: () => import("@/views/category/category.vue"),
+        component: () => import("@/views/vsearch/vsearch.vue"),
       },
       {
-        path: "/tag",
-        name: "Tag",
+        path: "/conf",
+        name: "Conf",
         meta: {
-          name: "标签",
+          name: "配置",
         },
-        component: () => import("@/views/tag/tag.vue"),
+        component: () => import("@/views/conf/conf.vue"),
       },
       {
-        path: "/article",
-        name: "Article",
+        path: "/sirius",
+        name: "Sirius",
         meta: {
-          name: "文章",
+          name: "发现",
         },
-        component: () => import("@/views/article/article.vue"),
+        component: () => import("@/views/sirius/sirius.vue"),
       },
       {
-        path: "/articleList",
-        name: "ArticleList",
+        path: "/resource",
+        name: "Resource",
         meta: {
-          name: "文章列表",
+          name: "资源",
         },
-        component: () => import("@/views/article/article-list.vue"),
-      },
-      {
-        path: "/photoAlbum",
-        name: "PhotoAlbum",
-        meta: {
-          name: "相册",
-        },
-        component: () => import("@/views/photo/photo-album.vue"),
-      },
-      {
-        path: "/photos",
-        name: "Photos",
-        meta: {
-          name: "图库",
-        },
-        component: () => import("@/views/photo/photos.vue"),
-      },
-      {
-        path: "/talk",
-        name: "Talk",
-        meta: {
-          name: "说说",
-        },
-        component: () => import("@/views/talk/talk.vue"),
-      },
-      {
-        path: "/link",
-        name: "link",
-        meta: {
-          name: "友链",
-        },
-        children: [
-          {
-            path: "list",
-            name: "LinkList",
-            meta: {
-              name: "友情链接",
-            },
-            component: () => import("@/views/links/link-list.vue"),
-          },
-        ],
-      },
-      {
-        path: "/resources",
-        name: "Resources",
-        meta: {
-          name: "资源导航",
-        },
-        children: [
-          {
-            path: "/resources/front",
-            name: "Front",
-            meta: {
-              name: "前端",
-            },
-            component: () => import("@/views/resources/category-list.vue"),
-          },
-          {
-            path: "/resources/back",
-            name: "Back",
-            meta: {
-              name: "后端",
-            },
-            component: () => import("@/views/resources/category-list.vue"),
-          },
-        ],
-      },
-      {
-        path: "/siteList",
-        name: "SiteList",
-        meta: {
-          name: "网站列表",
-        },
-        component: () => import("@/views/resources/site-list.vue"),
-      },
-      {
-        path: "/userCenter",
-        name: "UserCenter",
-        meta: {
-          name: "个人中心",
-        },
-        component: () => import("@/views/user/user-center.vue"),
-      },
-      {
-        path: "/message",
-        name: "Message",
-        meta: {
-          name: "留言",
-        },
-        children: [
-          {
-            path: "list",
-            name: "Message",
-            meta: {
-              keepAlive: true,
-              name: "留言",
-            },
-            component: () => import("@/views/message/index.vue"),
-          },
-          {
-            path: "publish",
-            name: "publish",
-            meta: {
-              name: "编辑/新增留言",
-            },
-            component: () => import("@/views/message/publish.vue"),
-          },
-          {
-            path: "detail",
-            name: "MessageDetail",
-            meta: {
-              name: "留言详情",
-            },
-            component: () => import("@/views/message/detail.vue"),
-          },
-        ],
+        component: () => import("@/views/links/resource.vue"),
       },
     ],
   },

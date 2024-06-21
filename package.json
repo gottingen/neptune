@@ -1,5 +1,5 @@
 {
-  "name": "小张的个人博客",
+  "name": "kumo-search",
   "private": true,
   "version": "1.0.0",
   "type": "module",
@@ -27,7 +27,8 @@
     "pinia": "^2.0.28",
     "pinia-plugin-persist": "^1.0.0",
     "vue": "^3.3.4",
-    "vue-router": "^4.0.3"
+    "vue-router": "^4.0.3",
+    "markdown-it": "^14.1.0"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^6.7.4",

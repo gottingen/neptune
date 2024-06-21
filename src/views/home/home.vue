@@ -1,256 +1,48 @@
 <script setup>
-import { ref, reactive, onMounted, nextTick } from "vue";
-import { user } from "@/store/index.js";
-
-import { homeGetArticleList } from "@/api/article";
-import { homeGetConfig } from "@/api/config";
-import { getAllTag } from "@/api/tag";
-import { homeGetStatistic } from "@/api/home";
-import { randomFontColor, numberFormate } from "@/utils/tool";
-
-import HomeArticleList from "@/components/HomeArticle/home-article-list.vue";
-import RightSide from "@/components/RightSide/right-side.vue";
-import MobileTopSkeleton from "@/components/RightSide/components/skeleton/mobile-top-skeleton.vue";
-import RightSideItem from "@/components/RightSide/components/item/right-side-item.vue";
-import RightSideTop from "@/components/RightSide/components/item/right-side-top.vue";
-import RightSideSkeletonItem from "@/components/RightSide/components/skeleton/right-side-skeleton-item.vue";
-import { gsapTransY } from "@/utils/transform";
-
-const userStore = user();
-
-/** 文章 */
-const param = reactive({
-  current: 1, // 当前页
-  size: 5, // 每页条目数
-  loading: true, // 加载
-});
-const articleList = ref([]);
-const articleTotal = ref();
-
-const getHomeArticleList = async () => {
-  try {
-    let res = await homeGetArticleList(param.current, param.size);
-    if (res.code == 0) {
-      const { list, total } = res.result;
-      articleList.value = list;
-      articleTotal.value = total;
-    }
-  } finally {
-    param.loading = false;
-  }
-};
-
-const pagination = (page) => {
-  param.current = page.current;
-  getHomeArticleList();
-};
-
-/** 网站右侧 */
-const rightSizeLoading = ref(false);
-const runtime = ref(0);
-let configDetail = ref({});
-let tags = ref([]);
-
-// 获取网站详细信息
-const getConfigDetail = async () => {
-  try {
-    let res = await homeGetConfig();
-    if (res.code == 0 && typeof res.result != "string") {
-      configDetail.value = res.result;
-      userStore.setBlogAvatar(res.result.blog_avatar);
-      calcRuntimeDays(configDetail.value.createdAt);
-    }
-  } finally {
-    rightSizeLoading.value = false;
-  }
-};
-// 获取文章数、分类数、标签数
-const getStatistic = async () => {
-  let res = await homeGetStatistic();
-  if (res.code == 0) {
-    Object.assign(configDetail.value, res.result);
-  }
-};
-
-// 获取所有的标签
-const getAllTags = async () => {
-  let res = await getAllTag();
-  if (res.code == 0) {
-    tags.value = res.result.map((r) => {
-      r.color = randomFontColor();
-      return r;
-    });
-  }
-};
-// 计算出网站运行天数
-const calcRuntimeDays = (time) => {
-  if (time) {
-    // eslint-disable-next-line
-    time = time.replace(/\-/g, "/"); // 解决ios系统上格式化时间出现NAN的bug
-    const now = new Date().getTime();
-    const created = new Date(time).getTime();
-    const days = Math.floor((now - created) / 8.64e7);
-    runtime.value = days;
-  }
-};
-
-const init = async () => {
-  param.loading = true;
-  rightSizeLoading.value = true;
-  await getHomeArticleList("init");
-  await getConfigDetail();
-  await getStatistic();
-  await getAllTags();
-};
-
-const observeMobileBox = () => {
-  nextTick(() => {
-    gsapTransY([".mobile-top-card", ".mobile-bottom-card"], -30, 0.5, "bounce.in");
-    gsapTransY([".mobile-bottom-card"], 30, 0.6, "none");
-  });
-};
-
-onMounted(async () => {
-  await init();
-  await observeMobileBox();
-});
 </script>
 
 <template>
   <div class="home_center_box">
     <el-row>
       <el-col :xs="24" :sm="18">
-        <el-card
-          class="mobile-top-card mobile-card info-card animate__animated animate__fadeIn"
-          shadow="hover"
-        >
-          <el-skeleton :loading="rightSizeLoading" animated>
-            <template #template>
-              <MobileTopSkeleton />
-            </template>
-            <template #default>
-              <RightSideTop :configDetail="configDetail" />
-            </template>
-          </el-skeleton>
-        </el-card>
-        <!-- 博客文章 -->
-        <HomeArticleList
-          :articleList="articleList"
-          :param="param"
-          :articleTotal="articleTotal"
-          @pageChange="pagination"
-        ></HomeArticleList>
-        <el-card
-          class="mobile-bottom-card card-hover mobile-card info-card animate__animated animate__fadeIn"
-          shadow="hover"
-        >
-          <el-skeleton :loading="rightSizeLoading" animated>
-            <template #template>
-              <RightSideSkeletonItem />
-            </template>
-            <template #default>
-              <RightSideItem icon="icon-zixun" size="1.4rem" title="网站资讯">
-                <div class="site-info">
-                  <div class="flex_r_between">
-                    <span>文章数目：</span>
-                    <span class="value">{{ configDetail.articleCount }}</span>
-                  </div>
-                  <div class="flex_r_between">
-                    <span>运行时间：</span>
-                    <span class="value">{{ runtime }} 天</span>
-                  </div>
-                  <div class="flex_r_between">
-                    <span>博客访问次数：</span>
-                    <span class="value">{{ numberFormate(configDetail.view_time) }}</span>
-                  </div>
-                  <div class="group">
-                    交流群
-                    <div class="flex justify-end items-start flex-nowrap">
-                      <div v-image="configDetail.we_chat_group">
-                        <el-image
-                          class="img"
-                          :src="configDetail.we_chat_group"
-                          fit="cover"
-                          :preview-src-list="[configDetail.we_chat_group]"
-                          preview-teleported
-                          lazy
-                        >
-                          <template #error>
-                            <div class="w-[100%] h-[100%] grid place-items-center">
-                              <svg-icon name="image404" :width="4" :height="4"></svg-icon>
-                            </div>
-                          </template>
-                        </el-image>
-                      </div>
-                      <div v-image="configDetail.qq_group">
-                        <el-image
-                          class="img !ml-[10px]"
-                          :src="configDetail.qq_group"
-                          fit="cover"
-                          :preview-src-list="[configDetail.qq_group]"
-                          preview-teleported
-                          lazy
-                        >
-                          <template #error>
-                            <div class="w-[100%] h-[100%] grid place-items-center">
-                              <svg-icon name="image404" :width="4" :height="4"></svg-icon>
-                            </div>
-                          </template>
-                        </el-image>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="group">
-                    支持作者
-                    <div class="flex justify-end items-start flex-nowrap">
-                      <div v-image="configDetail.ali_pay">
-                        <el-image
-                          class="img"
-                          :src="configDetail.ali_pay"
-                          fit="cover"
-                          :preview-src-list="[configDetail.ali_pay]"
-                          preview-teleported
-                          lazy
-                        >
-                          <template #error>
-                            <div class="w-[100%] h-[100%] grid place-items-center">
-                              <svg-icon name="image404" :width="4" :height="4"></svg-icon>
-                            </div>
-                          </template>
-                        </el-image>
-                      </div>
-                      <div v-image="configDetail.we_chat_pay">
-                        <el-image
-                          class="img !ml-[10px]"
-                          :src="configDetail.we_chat_pay"
-                          fit="cover"
-                          :preview-src-list="[configDetail.we_chat_pay]"
-                          preview-teleported
-                          lazy
-                        >
-                          <template #error>
-                            <div class="w-[100%] h-[100%] grid place-items-center">
-                              <svg-icon name="image404" :width="4" :height="4"></svg-icon>
-                            </div>
-                          </template>
-                        </el-image>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </RightSideItem>
-            </template>
-          </el-skeleton>
+        <el-card>
+          <div slot="header" class="clearfix">
+            <span>EA是什么</span>
+          </div>
+
+          `kumo search`
+          是一个端到端搜索引擎框架，支持全文检索、倒排索引、正排索引、排序、缓存、索引分层、干预系统、特征收集、离线计算、存储系统等功能。`kumo
+          search`
+          运行在 `EA`(Elastic automic infrastructure architecture)
+          平台上，支持在多机房、多集群上实现`工程自动化`、`服务治理`、`实时数据`、`服务降级与容灾`等功能。
+
+          随着互联网的发展，全网搜索已经不再是获取信息的唯一途径。很多垂直的信息服务，如电商、社交、新闻等，都有自己的搜索引擎。
+          这些搜索引擎的特点是：数据量中等，业务复杂，用户体验要求高。这些搜索引擎的开发，需要大量的工程和算法支持。`kumo
+          search`旨在
+          提供一套开箱即用的搜索引擎框架，帮助用户快速搭建自己的搜索引擎。在这个框架上，用户可以通过项目内的AOT编译器，用
+          `python`编写业务逻辑，框架会自动生成`c++`代码，并生成二进制动态库，动态更新到搜索引擎中。从而实现搜索引擎的快速迭代。
         </el-card>
       </el-col>
-      <el-col :xs="0" :sm="6">
-        <!-- 博客我的信息 -->
-        <RightSide
-          :configDetail="configDetail"
-          :tags="tags"
-          :runtime="runtime"
-          :loading="rightSizeLoading"
-        />
+    </el-row>
+    <el-row>
+      <el-col :xs="24" :sm="18">
+        <el-card>
+          <div slot="header" class="clearfix">
+            <span>kumo search是什么</span>
+          </div>
+
+          `kumo search`
+          是一个端到端搜索引擎框架，支持全文检索、倒排索引、正排索引、排序、缓存、索引分层、干预系统、特征收集、离线计算、存储系统等功能。`kumo
+          search`
+          运行在 `EA`(Elastic automic infrastructure architecture)
+          平台上，支持在多机房、多集群上实现`工程自动化`、`服务治理`、`实时数据`、`服务降级与容灾`等功能。
+
+          随着互联网的发展，全网搜索已经不再是获取信息的唯一途径。很多垂直的信息服务，如电商、社交、新闻等，都有自己的搜索引擎。
+          这些搜索引擎的特点是：数据量中等，业务复杂，用户体验要求高。这些搜索引擎的开发，需要大量的工程和算法支持。`kumo
+          search`旨在
+          提供一套开箱即用的搜索引擎框架，帮助用户快速搭建自己的搜索引擎。在这个框架上，用户可以通过项目内的AOT编译器，用
+          `python`编写业务逻辑，框架会自动生成`c++`代码，并生成二进制动态库，动态更新到搜索引擎中。从而实现搜索引擎的快速迭代。
+        </el-card>
       </el-col>
     </el-row>
   </div>
@@ -260,35 +52,45 @@ onMounted(async () => {
 .mobile-top-card {
   height: 31rem;
   margin: 4px;
+
   :deep(.info-avatar) {
     padding: 0 2rem;
   }
+
   :deep(.personal-say) {
     padding-left: 1rem;
   }
+
   :deep(.info-background) {
     height: 12rem;
     width: 100%;
   }
+
   :deep(.common-menu) {
     padding: 1rem 5.5rem;
   }
+
   :deep(.git-ee) {
     padding: 0 4rem;
   }
+
   :deep(.personal-link) {
     padding: 1rem 6rem;
   }
 }
+
 .mobile-bottom-card {
   margin: 4px;
   padding: 1rem;
+
   .icon-localoffer {
     font-weight: 900;
   }
+
   span {
     margin-left: 0.3rem;
   }
+
   .site-info {
     padding: 0.3rem 1rem;
     line-height: 2;
@@ -307,6 +109,7 @@ onMounted(async () => {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
+
   .img {
     width: 80px;
     height: 80px;

@@ -11,7 +11,7 @@ import { createSvgIconsPlugin } from "vite-plugin-svg-icons"; // 支持svg
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: "./",
+  base: "/ea/ui/",
   root: process.cwd(), // 绝对路径
   resolve: {
     // 配置路径别名
@@ -85,13 +85,7 @@ export default defineConfig({
         target: "http://mrzym.top:9000/blog-images",
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/blog-images/, ""),
-      },
-      "/wapi": {
-        // 网易云的音乐代理
-        target: "http://mrzym.top:3000",
-        changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/wapi/, ""),
-      },
+      }
     },
   },
   // 打包输出
