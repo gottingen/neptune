@@ -186,6 +186,7 @@ export default {
         <p>配置时间： {{ confTime }}</p>
         <p>配置版本： {{ confVersion }}</p>
         <p>配置内容： {{ confContent }}</p>
+        <el-input type="textarea" v-model=confContent disabled></el-input>
       </el-card>
     </el-col>
   </el-row>
