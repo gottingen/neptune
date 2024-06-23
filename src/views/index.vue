@@ -55,7 +55,7 @@ const goMenu = (val) => {
 
 <template>
   <div class="welcome-box">
-    <div class="font">KUMO SEARCH</div>
+    <div class="font">Elastic Architecture</div>
     <TypeWriter class="type-writer" :typeList="saying"></TypeWriter>
     <ul class="home-tab">
       <li v-for="item in menuList" :key="item.path" @click="goMenu(item.path)">

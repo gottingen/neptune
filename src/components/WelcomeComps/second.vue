@@ -193,7 +193,7 @@
   width: 145px;
   height: 87px;
   margin: 1px;
-  background: url("../../assets/img/macbookpro.png") no-repeat center center var(--global-black);
+  background: url("../../assets/img/kumo_search_logo.png") no-repeat center center var(--global-black);
   background-size: 100% 100%;
   border-radius: 4px;
   position: relative;

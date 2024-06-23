@@ -1,10 +1,17 @@
 <script setup>
+
+import grayFlow from "@/assets/img/grayflow.gif";
+import kumologo from "@/assets/img/kumo_search_logo.png";
 </script>
 
 <template>
   <div class="home_center_box">
     <el-row>
-      <el-col :xs="24" :sm="18">
+      <el-col align="center"><el-image :src="grayFlow" class="img" /></el-col>
+
+    </el-row>
+    <el-row>
+      <el-col :xs="24" :sm="24">
         <el-card>
           <div slot="header" class="clearfix">
             <span>EA是什么</span>
@@ -25,7 +32,7 @@
       </el-col>
     </el-row>
     <el-row>
-      <el-col :xs="24" :sm="18">
+      <el-col :xs="24" :sm="24">
         <el-card>
           <div slot="header" class="clearfix">
             <span>kumo search是什么</span>
