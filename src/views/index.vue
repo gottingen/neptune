@@ -18,7 +18,7 @@ const menuList = [
   },
   {
     label: "发现",
-    path: "/sirius",
+    path: "/discovery",
   },
   {
     label: "V搜索",

@@ -16,8 +16,13 @@ import "virtual:svg-icons-register";
 import vCopy from "./directives/copy";
 import image from "./directives/imageLoading";
 import axios from "axios/dist/axios";
+import * as ElementIcons from "@element-plus/icons-vue";
 
 const app = createApp(App);
+// 注册element-plus的图标
+for (const [key,component] of Object.entries(ElementIcons)) {
+  app.component(key,component)
+}
 app.config.globalProperties.$axios = axios
 app.directive("copy", vCopy);
 app.directive("image", image);

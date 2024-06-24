@@ -40,6 +40,14 @@ const routes = [
         component: () => import("@/views/archives/archives.vue"),
       },
       {
+        path: "/monitor",
+        name: "Monitor",
+        meta: {
+          name: "监控",
+        },
+        component: () => import("@/views/monitor/monitor.vue"),
+      },
+      {
         path: "/kv",
         name: "Kv",
         meta: {
@@ -64,12 +72,12 @@ const routes = [
         component: () => import("@/views/conf/conf.vue"),
       },
       {
-        path: "/sirius",
-        name: "Sirius",
+        path: "/discovery",
+        name: "discovery",
         meta: {
-          name: "发现",
+          name: "服务发现",
         },
-        component: () => import("@/views/sirius/sirius.vue"),
+        component: () => import("@/views/discovery/discovery.vue"),
       },
       {
         path: "/resource",

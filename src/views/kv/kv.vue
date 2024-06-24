@@ -11,7 +11,6 @@ const loading = ref(true);
 
 
 <template>
-  <PageHeader :loading="loading" />
   <div class="kvs">
     <el-row class="center_box">
       <el-col :span="12">

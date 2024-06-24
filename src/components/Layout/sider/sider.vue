@@ -92,19 +92,18 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="header_box" :class="headerState.headerClass">
-    <div class="pc_menu flex_r_between">
-      <div class="sub-avatar">
+  <div >
+    <div >
+      <div >
         <router-link v-if="getBlogAvatar" to="/"
           ><el-avatar class="el-avatar" :src="getBlogAvatar" />
         </router-link>
         <MessageBox class="ml-[10px]" v-if="getUserInfo.id" :user-id="getUserInfo.id" type="pc" />
       </div>
-      <div class="flex_r_around">
-        <BlogSearch></BlogSearch>
+      <div class="flex_v_around">
         <el-menu
-          class="sub-menu"
-          mode="horizontal"
+            class="sub-menu"
+          mode="vertical"
           :default-active="getPath"
           :ellipsis="false"
           @select="(val) => handleSelect(val, 'pc')"
