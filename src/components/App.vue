@@ -75,6 +75,7 @@ export default {
     SystemStore: defineAsyncComponent(() => import("@/view/system/store")),
     SystemTask: defineAsyncComponent(() => import("@/view/system/task")),
     Demo: defineAsyncComponent(() => import("@/view/demo/demo")),
+    Kumo: defineAsyncComponent(() => import("@/view/kumo/kumo")),
     DemoDock: defineAsyncComponent(() => import("@/view/demo/dock")),
     DemoUnResize: defineAsyncComponent(() => import("@/view/demo/unresize")),
     DemoUnClose: defineAsyncComponent(() => import("@/view/demo/unclose")),

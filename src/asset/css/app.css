@@ -153,3 +153,10 @@ input, textarea {
 ::-webkit-scrollbar-corner {
     background: transparent;
 }
+
+.icon-k {
+    background: url('../img/ks.png') no-repeat center center;
+    font-size: 32px;
+    width: 32px;
+    height: 32px;
+}
