@@ -1,16 +1,18 @@
 <template>
   <div class="about">
     <div class="top">
-      <i class="iconfont icon-apple1"></i>
+      <i class="iconfont icon-k"></i>
       <div class="info">
         <div class="title">{{ about.title }}</div>
         <div class="version">{{ about.version }}</div>
       </div>
     </div>
+    <!--
     <div class="badges">
       <img src="https://svg.hamm.cn/gitee.svg?type=star&user=hamm&project=mac-ui&logo=yes" />
       <img src="https://svg.hamm.cn/gitee.svg?user=hamm&project=mac-ui&type=issue&logo=yes" />
     </div>
+    -->
     <div class="copyright">{{ about.copyright }}</div>
   </div>
 </template>
@@ -63,8 +65,8 @@
 <script setup>
 import { reactive } from 'vue'
 const about = reactive({
-  title: "MacOS WebUI",
-  version: "v0.0.1 2021-08-10 22:22",
-  copyright: "本项目所用MacOS图标版权为Apple.Inc所有,向MacOS致敬!",
+  title: "Kumo Search WebUI",
+  version: "v0.2.0 2024-07-10",
+  copyright: "本项目基于 Elastic Architecture(EA) 平台开发，由 Kumo Search 团队维护。",
 })
 </script>

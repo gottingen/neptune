@@ -1,39 +1,24 @@
 <template>
   <div class="setting">
-    <el-row>
-      <el-col :span="24" class="spanner">
-        <span>服务器地址配置</span>
-      </el-col>
-      <el-divider class="splitter"></el-divider>
-      <el-col :span="2">
-      </el-col>
-      <el-col :span="10">
-        <el-card class="box-card">
-          <span class="header">当前地址</span>
-          <el-divider class="splitter"></el-divider>
-          <p class="address">{{ $store.state.backendAddr }}</p>
-        </el-card>
-      </el-col>
-      <el-col :span="10">
-        <el-card class="box-card">
-          <span class="header">设置地址</span>
-          <el-divider class="splitter"></el-divider>
-          <el-input type="text" v-model="serverEndpoint" clearable></el-input>
-          <el-tag>{{testResult}}</el-tag>
-          <el-button :type="buttonType" size="small" @click="uptoParent" :disabled="labelType">提交</el-button>
-          <el-button type="success" size="small" @click="testConnection">测试</el-button>
-        </el-card>
-      </el-col>
-      <el-col :span="2">
-      </el-col>
-    </el-row>
+    <el-container>
+      <el-header>
+        <span>{{ "当前地址: " + $store.state.backendAddr }}</span>
+      </el-header>
+      <el-main>
+        <CreateConf :serverEndpoint="$store.state.backendAddr"></CreateConf>
+      </el-main>
+    </el-container>
   </div>
 </template>
 
 <script>
 import axios from "axios/dist/axios";
+import CreateConf from "@/components/CreateConf";
 
 export default {
+  components: {
+    CreateConf
+  },
   data() {
     return {
       serverEndpoint: 'localhost:8018',
@@ -76,7 +61,7 @@ export default {
 .setting {
   display: flex;
   flex-direction: column;
-  height: 350px;
+  height: 100%;
   width: 100%;
   color: #333;
   text-shadow: none;
@@ -117,7 +102,7 @@ export default {
 
 .box-card {
   width: 240px;
-  height: 180px;
+  height: 480px;
   background: #cce8cf;
 }
 

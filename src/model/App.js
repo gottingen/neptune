@@ -46,6 +46,41 @@ export default {
       keepInDock: true,
     },
     {
+      key: "sirius_config",
+      component: "SiriusConfig",
+      icon: "icon-setting",
+      title: "配置中心",
+      iconColor: "#fff",
+      iconBgColor: "#23282d",
+      width: 800,
+      height: 600,
+      disableResize: false,
+      hideInDesktop: false,
+      keepInDock: true,
+      menu: [
+        {
+          key: "setting",
+          title: "设置服务器",
+          sub: [
+            {
+              key: "close",
+              title: "关闭",
+            },
+          ],
+        },
+        {
+          key: "help",
+          title: "帮助",
+          sub: [
+            {
+              key: "send",
+              title: "发送反馈",
+            },
+          ],
+        },
+      ],
+    },
+    {
       key: "system_finder",
       component: "SystemFinder",
       icon: "icon-MIS_chanpinshezhi",
@@ -128,7 +163,7 @@ export default {
       width: 800,
       height: 600,
       disableResize: true,
-      hideInDesktop: true,
+      hideInDesktop: false,
       keepInDock: true,
       menu: [
         {

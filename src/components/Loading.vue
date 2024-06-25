@@ -1,6 +1,7 @@
 <template>
   <div class="loading" @click="fullScreen">
-    <div class="logo"><i class="iconfont icon-apple-fill"></i></div>
+    <!--<div class="logo"><i class="iconfont icon-apple-fill"></i></div>-->
+    <div class="logo"><img src="../asset/img/klogo.png"/> </div>
     <div class="progress" :style="{ width: showProgress ? '300px' : 0 }">
       <div :style="{ width: progress + '%' }"></div>
     </div>
@@ -48,6 +49,12 @@
       bottom: 0;
     }
   }
+}
+.icon-k64 {
+  background: url('../asset/img/kt.png') no-repeat center center;
+  font-size: 64px;
+  width: 64px;
+  height: 64px;
 }
 </style>
 <script>

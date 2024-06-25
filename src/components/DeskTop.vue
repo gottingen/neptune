@@ -3,7 +3,7 @@
     <div class="top">
       <el-dropdown trigger="click">
         <div class="logo">
-          <i class="iconfont icon-apple1"></i>
+          <i class="iconfont icon-k"></i>
         </div>
         <template #dropdown>
           <el-dropdown-menu>

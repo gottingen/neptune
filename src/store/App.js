@@ -10,6 +10,7 @@ export default {
       openWidgetList: [],
       volumn: 80,
       launchpad: false,
+      backendAddr: "localhost:8011",
     };
   },
   mutations: {
