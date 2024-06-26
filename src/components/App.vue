@@ -79,6 +79,7 @@ export default {
     SiriusDiscovery: defineAsyncComponent(() => import("@/view/sirius/discovery")),
     SiriusKv: defineAsyncComponent(() => import("@/view/sirius/kv")),
     Kumo: defineAsyncComponent(() => import("@/view/kumo/kumo")),
+    EAHalf: defineAsyncComponent(() => import("@/view/kumo/eahalf")),
     DemoDock: defineAsyncComponent(() => import("@/view/demo/dock")),
     DemoUnResize: defineAsyncComponent(() => import("@/view/demo/unresize")),
     DemoUnClose: defineAsyncComponent(() => import("@/view/demo/unclose")),
