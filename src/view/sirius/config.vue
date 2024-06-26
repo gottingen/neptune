@@ -3,6 +3,9 @@
     <el-container>
       <el-header>
         <span>{{ "当前地址: " + $store.state.backendAddr }}</span>
+        <p>
+          <el-button type="success" size="small" @click="callSetting">设置</el-button>
+        </p>
       </el-header>
       <el-main>
         <el-tabs type="border-card" class="cardsetting">
@@ -41,7 +44,14 @@ export default {
       buttonType: 'danger'
     };
   },
-  methods: {},
+  methods: {
+    callSetting() {
+      this.$emit("api", {
+        event: "openApp",
+        app: "system_setting",
+      });
+    },
+  },
   created() {
   },
 };

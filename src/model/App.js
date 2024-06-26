@@ -57,28 +57,6 @@ export default {
       disableResize: false,
       hideInDesktop: false,
       keepInDock: true,
-      menu: [
-        {
-          key: "setting",
-          title: "设置服务器",
-          sub: [
-            {
-              key: "close",
-              title: "关闭",
-            },
-          ],
-        },
-        {
-          key: "help",
-          title: "帮助",
-          sub: [
-            {
-              key: "send",
-              title: "发送反馈",
-            },
-          ],
-        },
-      ],
     },
     {
       key: "system_finder",
