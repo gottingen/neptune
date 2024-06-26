@@ -5,7 +5,17 @@
         <span>{{ "当前地址: " + $store.state.backendAddr }}</span>
       </el-header>
       <el-main>
-        <CreateConf :serverEndpoint="$store.state.backendAddr"></CreateConf>
+        <el-tabs type="border-card" class="cardsetting">
+          <el-tab-pane label="创建配置">
+            <CreateConf :serverEndpoint="$store.state.backendAddr"></CreateConf>
+          </el-tab-pane>
+          <el-tab-pane label="删除配置">
+            <RemoveConfig :serverEndpoint="$store.state.backendAddr"></RemoveConfig>
+          </el-tab-pane>
+          <el-tab-pane label="查询配置">
+            <ListConfig :serverEndpoint="$store.state.backendAddr"></ListConfig>
+          </el-tab-pane>
+        </el-tabs>
       </el-main>
     </el-container>
   </div>
@@ -14,10 +24,14 @@
 <script>
 import axios from "axios/dist/axios";
 import CreateConf from "@/components/CreateConf";
+import RemoveConfig from "@/components/RemoveConfig";
+import ListConfig from "@/components/ListConfig";
 
 export default {
   components: {
-    CreateConf
+    CreateConf,
+    RemoveConfig,
+    ListConfig
   },
   data() {
     return {
@@ -27,31 +41,7 @@ export default {
       buttonType: 'danger'
     };
   },
-  methods: {
-    uptoParent() {
-      this.$store.state.backendAddr = this.serverEndpoint;
-    },
-    testConnection() {
-      try {
-        axios.get('http://' + this.serverEndpoint + '/ea')
-            .then(response => {
-              console.log(response)
-              this.testResult = '成功'
-              this.labelType = false
-              this.buttonType = 'success'
-            }).catch(error => {
-          console.log(error)
-          this.testResult = '失败'
-          this.labelType = true
-          this.buttonType = 'danger'
-        })
-      } catch (error) {
-        this.testResult = '失败'
-        this.labelType = true
-        this.buttonType = 'danger'
-      }
-    }
-  },
+  methods: {},
   created() {
   },
 };
@@ -68,6 +58,20 @@ export default {
   font-weight: 300;
   overflow: hidden;
   margin: 10px 20px;
+}
+
+.cardsetting {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 80%;
+  color: #333;
+  text-shadow: none;
+  font-weight: 300;
+  overflow: hidden;
+  margin: 10px 20px;
+  align-content: center;
+  align-self: center;
 }
 
 .header {

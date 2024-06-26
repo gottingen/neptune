@@ -84,6 +84,7 @@ export default {
       import("@/view/demo/hidedesktop")
     ),
     DemoColorFull: defineAsyncComponent(() => import("@/view/demo/colorfull")),
+    ConfigShowContent: defineAsyncComponent(() => import("@/view/sirius/config_show")),
     DemoCamera: defineAsyncComponent(() => import("@/view/demo/camera")),
     DemoMultiTask: defineAsyncComponent(() => import("@/view/demo/multitask")),
     DemoWeb: defineAsyncComponent(() => import("@/view/demo/web")),

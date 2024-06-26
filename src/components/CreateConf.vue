@@ -57,19 +57,18 @@ export default {
 <template>
   <div>
     <p>
-    <el-tag size="big">配置名</el-tag>
+    <el-tag size="medium">配置名</el-tag>
     <el-input type="text" v-model.lazy.trim="confName" size="small" style="width: 40%" clearable></el-input>
     </p>
     <p>
-    <el-tag size="big">版本</el-tag>
+    <el-tag size="medium">版本</el-tag>
     <el-input type="text" v-model.lazy.trim="confVersion" size="small" style="width: 40%" clearable> </el-input>
     </p>
     <p>
-    <el-tag size="">类型</el-tag>
+    <el-tag size="medium">类型</el-tag>
     <el-autocomplete
         class="inline-input"
               v-model.lazy.trim="confType"
-              size="small"
               :fetch-suggestions="querySearch"
               placeholder="json"
               style="width: 20%" clearable>
