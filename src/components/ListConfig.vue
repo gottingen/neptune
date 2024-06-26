@@ -9,7 +9,7 @@ export default {
       queryConfigContent: '',
       currentPage: 1,
       loading: false,
-      pagesize: 20,
+      pagesize: 5,
       total: 0,
       configArray: [],
       server: {
@@ -83,11 +83,6 @@ export default {
     },
     handleQuery(index, row) {
       this.queryConfigContent = row.content;
-        this.$emit("api", {
-          event: "openApp",
-          app: "demo_colorfull",
-          data: "row.content",
-        });
     },
     copyText(row, column, cell, event){
       let save = function (e){

@@ -48,17 +48,26 @@ export default {
     },
     testConnection() {
       try {
-        axios.get('http://' + this.serverEndpoint + '/ea')
-            .then(response => {
+        axios.get('http://' + this.serverEndpoint + '/ea', {transformResponse: [function (data) {
+          return {data: data}
+        }]}).then(response => {
               console.log(response)
               this.testResult = '成功'
               this.labelType = false
               this.buttonType = 'success'
+          this.$notify({
+            message: '连接成功！' + this.serverEndpoint,
+            type: 'success',
+          });
             }).catch(error => {
           console.log(error)
           this.testResult = '失败'
           this.labelType = true
           this.buttonType = 'danger'
+          this.$notify({
+            message: '连接失败！' +this.serverEndpoint,
+            type: 'error',
+          });
         })
       } catch (error) {
         this.testResult = '失败'

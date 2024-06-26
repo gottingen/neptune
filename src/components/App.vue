@@ -75,7 +75,9 @@ export default {
     SystemStore: defineAsyncComponent(() => import("@/view/system/store")),
     SystemTask: defineAsyncComponent(() => import("@/view/system/task")),
     Demo: defineAsyncComponent(() => import("@/view/demo/demo")),
-    SiriusConfig: defineAsyncComponent(() => import("@/view/sirius/config.vue")),
+    SiriusConfig: defineAsyncComponent(() => import("@/view/sirius/config")),
+    SiriusDiscovery: defineAsyncComponent(() => import("@/view/sirius/discovery")),
+    SiriusKv: defineAsyncComponent(() => import("@/view/sirius/kv")),
     Kumo: defineAsyncComponent(() => import("@/view/kumo/kumo")),
     DemoDock: defineAsyncComponent(() => import("@/view/demo/dock")),
     DemoUnResize: defineAsyncComponent(() => import("@/view/demo/unresize")),
@@ -84,7 +86,6 @@ export default {
       import("@/view/demo/hidedesktop")
     ),
     DemoColorFull: defineAsyncComponent(() => import("@/view/demo/colorfull")),
-    ConfigShowContent: defineAsyncComponent(() => import("@/view/sirius/config_show")),
     DemoCamera: defineAsyncComponent(() => import("@/view/demo/camera")),
     DemoMultiTask: defineAsyncComponent(() => import("@/view/demo/multitask")),
     DemoWeb: defineAsyncComponent(() => import("@/view/demo/web")),

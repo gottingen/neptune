@@ -9,14 +9,11 @@
       </el-header>
       <el-main>
         <el-tabs type="border-card" class="cardsetting">
-          <el-tab-pane label="创建应用">
-            <CreateDiscovery :serverEndpoint="$store.state.backendAddr"></CreateDiscovery>
-          </el-tab-pane>
-          <el-tab-pane label="删除应用">
-            <RemoveDiscovery :serverEndpoint="$store.state.backendAddr"></RemoveDiscovery>
+          <el-tab-pane label="设置">
+            <SetKv :serverEndpoint="$store.state.backendAddr"></SetKv>
           </el-tab-pane>
           <el-tab-pane label="查询">
-            <ListDiscovery :serverEndpoint="$store.state.backendAddr"></ListDiscovery>
+            <GetKv :serverEndpoint="$store.state.backendAddr"></GetKv>
           </el-tab-pane>
         </el-tabs>
       </el-main>
@@ -26,14 +23,12 @@
 
 <script>
 import axios from "axios/dist/axios";
-import CreateDiscovery from "@/components/CreateDiscovery";
-import RemoveDiscovery from "@/components/RemoveDiscovery";
-import ListDiscovery from "@/components/ListDiscovery";
+import SetKv from "@/components/SetKv";
+import GetKv from "@/components/GetKv";
 export default {
   components: {
-    CreateDiscovery,
-    RemoveDiscovery,
-    ListDiscovery
+    SetKv,
+    GetKv
   },
   data() {
     return {
