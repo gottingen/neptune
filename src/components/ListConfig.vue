@@ -89,6 +89,18 @@ export default {
           data: "row.content",
         });
     },
+    copyText(row, column, cell, event){
+      let save = function (e){
+        e.clipboardData.setData('text/plain',event.target.innerText);
+        e.preventDefault();
+      }
+      document.addEventListener('copy',save);//添加一个copy事件
+      document.execCommand("copy");//执行copy方法\
+      this.$notify({
+        message: '恭喜你，复制成功！' + event.target.innerText,
+        type: 'success'
+      });
+    },
     current_change(currentPage) {
       this.currentPage = currentPage;
     }
@@ -109,6 +121,7 @@ export default {
         <p>配置列表： {{ total }}</p>
       </div>
       <el-table stripe="stripe" border="border"
+                @cell-dblclick="copyText"
                 :data="configArray.slice((currentPage - 1) * pagesize, currentPage * pagesize)"
                 style="width: 100%" v-loading="loading">
         <el-table-column
