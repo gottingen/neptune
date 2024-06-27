@@ -1,24 +1,29 @@
-import App from "./App.vue";
-import { createApp } from "vue";
-import router from "./router";
-import { createPinia } from "pinia"; //引入pinia
-import "./assets/css/iconFont/iconfont.css";
-import "element-plus/dist/index.css"; // 引入样式
-import "element-plus/theme-chalk/dark/css-vars.css";
-import piniaPluginPersist from "pinia-plugin-persist";
-// animate
-import "animate.css";
-// tailwind.css  https://www.tailwindcss.cn/docs
-import "./styles/tailwind.css";
-// svg
-import "virtual:svg-icons-register";
-// 指令
-import vCopy from "./directives/copy";
-import image from "./directives/imageLoading";
-import axios from "axios/dist/axios";
+import { createApp } from 'vue'
+import { createStore } from 'vuex'
 
-const app = createApp(App);
-app.config.globalProperties.$axios = axios
-app.directive("copy", vCopy);
-app.directive("image", image);
-app.use(router).use(createPinia().use(piniaPluginPersist)).mount("#app");
+import MacOS from './MacOS'
+let macOS = createApp(MacOS)
+
+
+import ElementPlus from 'element-plus';
+import 'element-plus/dist/index.css'
+import zhCn from 'element-plus/es/locale/lang/zh-cn'
+macOS.use(ElementPlus, {
+    locale: zhCn,
+})
+
+import "@/asset/css/app.css"
+import "@/asset/css/animation.css"
+
+import config from './config'
+macOS.config.globalProperties.config = config
+
+import tool from './helper/tool'
+macOS.config.globalProperties.tool = tool
+
+import AppStore from './store/App'
+const store = createStore(AppStore)
+macOS.use(store)
+
+window.macOS = macOS
+macOS.mount('#app')
