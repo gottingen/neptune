@@ -152,7 +152,7 @@
 export default {
   data() {
     return {
-      headImage: require("@/asset/img/bg.jpg"),
+      headImage: require("@/asset/img/mac.jpg"),
       user_name: "",
       user_password: "",
       haveSavedUserName: false,
