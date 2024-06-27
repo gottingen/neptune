@@ -12,7 +12,7 @@
           <el-tab-pane label="flags">
             <Flags :serverEndpoint="$store.state.backendAddr"></Flags>
           </el-tab-pane>
-          <el-tab-pane label="flags">
+          <el-tab-pane label="protobufs">
             <Protos :serverEndpoint="$store.state.backendAddr"></Protos>
           </el-tab-pane>
         </el-tabs>
