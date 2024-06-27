@@ -16,5 +16,6 @@ module.exports = {
     "no-unused-vars": "off",
     'vue/no-deprecated-slot-attribute': 'off',
     //'vue/no-deprecated-slot-scope-attribute': 'off',
+    'vue/no-deprecated-v-bind-sync': 'off',
   }
 }

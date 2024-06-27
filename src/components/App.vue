@@ -80,6 +80,7 @@ export default {
     SiriusKv: defineAsyncComponent(() => import("@/view/sirius/kv")),
     Kumo: defineAsyncComponent(() => import("@/view/kumo/kumo")),
     EAHalf: defineAsyncComponent(() => import("@/view/kumo/eahalf")),
+    Melon: defineAsyncComponent(() => import("@/view/melon/melon")),
     DemoDock: defineAsyncComponent(() => import("@/view/demo/dock")),
     DemoUnResize: defineAsyncComponent(() => import("@/view/demo/unresize")),
     DemoUnClose: defineAsyncComponent(() => import("@/view/demo/unclose")),
