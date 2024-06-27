@@ -21,7 +21,7 @@ export default {
   },
   methods: {
     setKV(endpoint) {
-      axios.post('http://' + endpoint + '/ea/cache?key=' + this.key,this.value).then(response => {
+      axios.post('http://' + endpoint + '/ea/cache/set?key=' + this.key,this.value).then(response => {
         this.server.code = response.data.code;
         this.server.msg = response.data.message;
         if(this.server.code === 0) {
