@@ -15,6 +15,9 @@
           <el-tab-pane label="protobufs">
             <Protos :serverEndpoint="$store.state.backendAddr"></Protos>
           </el-tab-pane>
+          <el-tab-pane label="Connections">
+            <Connections :serverEndpoint="$store.state.backendAddr"></Connections>
+          </el-tab-pane>
         </el-tabs>
       </el-main>
     </el-container>
@@ -25,10 +28,12 @@
 import axios from "axios/dist/axios";
 import Flags from "@/components/Flags";
 import Protos from "@/components/Protos";
+import Connections from "@/components/Connections";
 export default {
   components: {
     Flags,
-    Protos
+    Protos,
+    Connections
   },
   data() {
     return {
