@@ -12,14 +12,16 @@ export default {
   },
   data() {
     return {
-      queryProto: '',
-      descValue: '',
+      queryEnv: '',
+      launchCmd: '',
+      launchArgs: '',
+      launchDir: '',
       currentPage: 1,
       loading: false,
       pagesize: 5,
       dialogVisible: false,
       total: 0,
-      protoArray: [],
+      envArray: [],
       server: {
         code: 0,
         msg: 'null',
@@ -33,20 +35,23 @@ export default {
     }
   },
   methods: {
-    protoList(endpoint) {
+    launchQuery(endpoint) {
       this.loading = true;
-      let url = 'http://' + endpoint + '/eabi/melon/protobufs';
-      if(this.queryProto !== '') {
-        url += '?match=' + this.queryProto;
+      let url = 'http://' + endpoint + '/eabi/melon/launch';
+      if(this.queryEnv !== '') {
+        url += '?match=' + this.queryEnv;
       }
-      axios.post(url, {}).then(response => {
+      axios.get(url, {}).then(response => {
         this.server.code = response.data.code;
         this.server.msg = response.data.message;
-        if ('protobufs' in response.data) {
-          this.protoArray = response.data.protobufs;
-          this.total = this.protoArray.length;
+        this.launchCmd = response.data.cmd;
+        this.launchArgs = response.data.args;
+        this.launchDir = response.data.work_dir;
+        if ('envs' in response.data) {
+          this.envArray = response.data.envs;
+          this.total = this.envArray.length;
         } else {
-          this.protoArray = [];
+          this.envArray = [];
           this.total = 0;
         }
         if (this.server.code === 0) {
@@ -93,10 +98,6 @@ export default {
           })
           .catch(_ => {});
     },
-    enableDialog(row) {
-      this.descValue = row.detail;
-      this.dialogVisible = true;
-    }
   }
 }
 
@@ -107,42 +108,28 @@ export default {
     <el-col :span="24">
       <div slot="header" class="clearfix">
         <el-tag>flags</el-tag>
-        <el-input type="text" v-model.lazy.trim="queryProto" placeholder="config name" clearable></el-input>
-        <el-button type="success" @click="protoList(serverEndpoint)">查询</el-button>
+        <el-input type="text" v-model.lazy.trim="queryEnv" placeholder="env" clearable></el-input>
+        <el-button type="success" @click="launchQuery(serverEndpoint)">查询</el-button>
         <p>返回值 ： {{ server.code }}</p>
         <p>返回信息： {{ server.msg }}</p>
-        <p>协议列表： {{ total }}</p>
+        <p>环境变量： {{ total }}</p>
+      </div>
+      <div>
+        <p>服务名称 :{{ launchCmd }}</p>
+        <p>服务参数 :{{ launchArgs }}</p>
+        <p>服务路径 :{{ launchDir }}</p>
       </div>
       <el-table stripe="stripe" border="border"
                 @cell-dblclick="copyText"
-                :data="protoArray.slice((currentPage - 1) * pagesize, currentPage * pagesize)"
+                :data="envArray.slice((currentPage - 1) * pagesize, currentPage * pagesize)"
                 style="width: 100%" v-loading="loading">
         <el-table-column
-            prop="proto"
-            label="proto">
+            prop="name"
+            label="变量名称">
         </el-table-column>
         <el-table-column
-            label="查看"
-            width="90">
-          <template #default="{ row}">
-            <el-button type="success"
-                       size="mini"
-                       @click="enableDialog(row)">查看
-            </el-button>
-            <el-dialog
-                title="提示"
-                :model-value="dialogVisible"
-                width="50%"
-                :before-close="handleClose">
-              <div>
-                {{ descValue }}
-              </div>
-              <span slot="footer" class="dialog-footer">
-                <el-button @click="dialogVisible = false">取 消</el-button>
-                <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
-              </span>
-            </el-dialog>
-          </template>
+            prop="value"
+            label="变量值">
         </el-table-column>
       </el-table>
       <div class="block">

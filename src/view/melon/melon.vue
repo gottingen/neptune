@@ -9,6 +9,9 @@
       </el-header>
       <el-main>
         <el-tabs type="border-card" class="cardsetting">
+          <el-tab-pane label="launch">
+            <Launch :serverEndpoint="$store.state.backendAddr"></Launch>
+          </el-tab-pane>
           <el-tab-pane label="flags">
             <Flags :serverEndpoint="$store.state.backendAddr"></Flags>
           </el-tab-pane>
@@ -29,11 +32,13 @@ import axios from "axios/dist/axios";
 import Flags from "@/components/Flags";
 import Protos from "@/components/Protos";
 import Connections from "@/components/Connections";
+import Launch from "@/components/Launch";
 export default {
   components: {
     Flags,
     Protos,
-    Connections
+    Connections,
+    Launch
   },
   data() {
     return {
