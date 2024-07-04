@@ -95,8 +95,8 @@ export default {
     },
     {
       key: "sirius_dicovery",
-      component: "SiriusDiscovery",
       icon: "el-icon-view",
+      component: "SiriusDiscovery",
       title: "服务发现",
       iconColor: "#ffffff",
       iconBgColor: "#0fee71",
