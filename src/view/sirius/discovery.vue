@@ -18,6 +18,9 @@
           <el-tab-pane label="查询">
             <ListDiscovery :serverEndpoint="$store.state.backendAddr"></ListDiscovery>
           </el-tab-pane>
+          <el-tab-pane label="Servlet">
+            <ListServlet :serverEndpoint="$store.state.backendAddr"></ListServlet>
+          </el-tab-pane>
         </el-tabs>
       </el-main>
     </el-container>
@@ -29,11 +32,13 @@ import axios from "axios/dist/axios";
 import CreateDiscovery from "@/components/CreateDiscovery";
 import RemoveDiscovery from "@/components/RemoveDiscovery";
 import ListDiscovery from "@/components/ListDiscovery";
+import ListServlet from "@/components/ListServlet";
 export default {
   components: {
     CreateDiscovery,
     RemoveDiscovery,
-    ListDiscovery
+    ListDiscovery,
+    ListServlet
   },
   data() {
     return {
