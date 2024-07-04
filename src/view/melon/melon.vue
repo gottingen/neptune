@@ -33,7 +33,6 @@ import Flags from "@/components/Flags";
 import Protos from "@/components/Protos";
 import Connections from "@/components/Connections";
 import Launch from "@/components/Launch";
-import Charts from "@/components/Charts";
 export default {
   components: {
     Flags,
